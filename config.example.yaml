@@ -1,0 +1,54 @@
+# Copy to config.yaml and edit. config.yaml is what the tool actually reads.
+
+# Which GovDeals sellers to watch. The seller ID is the SECOND number in any
+# listing URL: govdeals.com/en/asset/<assetId>/<sellerId>
+# 7735 is the seller behind the Salt Lake City lab-equipment listings.
+sellers: [7735]
+
+# Optional title filter. If non-empty, only listings whose title matches one of
+# these (case-insensitive substring) get tracked. Keeps you from getting pinged
+# about every pallet of office chairs the same seller dumps. Leave [] for all.
+keywords:
+  - spectrometer
+  - cryo
+  - glove box
+  - microscope
+  - chromatograph
+  - laser
+  - analyzer
+
+# Alerting rules. You get an email when ALL of these are true:
+#   1. the listing closes within `hours_before_close` hours
+#   2. there is a readable current price
+#   3. current price <= value_ratio * (low end of the estimate)
+#      OR current price <= hard_price_cap   (whichever you want; see notes)
+alert:
+  hours_before_close: 24
+  value_ratio: 0.30          # "below 30% of estimated low" = worth a look
+  hard_price_cap: null       # e.g. 500 to also alert on anything under $500 regardless. null = off
+  also_alert_if_reserve_not_met: false
+
+# Polite crawling. robots.txt asks for a 5s crawl-delay; we use a bit more.
+crawl:
+  delay_seconds: 6
+  detail_timeout_ms: 45000
+  headless: true
+
+# Valuation backend: "llm" (Anthropic API, needs ANTHROPIC_API_KEY) or "none".
+valuation:
+  backend: llm
+  model: claude-sonnet-4-6
+
+# Email (SMTP). For Gmail, make an App Password (not your login password).
+smtp:
+  host: smtp.gmail.com
+  port: 465
+  user: you@gmail.com
+  password: "your-app-password"   # consider an env var instead; see README
+  to: you@gmail.com
+
+# Optional: also pull federal surplus from the sanctioned GSA Auctions API.
+# Needs a free key from https://api.data.gov  (the public DEMO_KEY is dead).
+gsa:
+  enabled: false
+  api_key: ""

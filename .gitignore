@@ -1,0 +1,15 @@
+# secrets & runtime state — never commit
+config.yaml
+*.db
+dumps/
+*.log
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# editor/session
+.claude/
+.DS_Store
