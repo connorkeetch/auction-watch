@@ -17,11 +17,14 @@ keywords:
   - laser
   - analyzer
 
-# Alerting rules. You get an email when ALL of these are true:
-#   1. the listing closes within `hours_before_close` hours
-#   2. there is a readable current price
-#   3. current price <= value_ratio * (low end of the estimate)
-#      OR current price <= hard_price_cap   (whichever you want; see notes)
+# Alerting rules: the listing must close within hours_before_close and must
+# not already have a recorded closing alert in this database. Any enabled
+# trigger can qualify it:
+# - readable price <= value_ratio * low estimate, OR
+# - readable price <= hard_price_cap (when set), OR
+# - reserve is known not met and also_alert_if_reserve_not_met is true.
+# With valuation.backend: none, set a hard_price_cap or the reserve trigger
+# if you want alerts; the estimate-ratio condition cannot work alone.
 alert:
   hours_before_close: 24
   value_ratio: 0.30          # "below 30% of estimated low" = worth a look
