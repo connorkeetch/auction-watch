@@ -136,7 +136,7 @@ A scheduler generally does not inherit variables you exported in an interactive 
 | Is the estimate an appraisal or current market evidence? | No. It is an optional title-based triage estimate, without implemented sold-comparable lookup. `ebay_sold()` is an unfinished stub. Costs depend on your own API account and model. |
 | Are tests and CI included? | No automated test suite or CI workflow is included in this snapshot. Live sources, email delivery, and scheduling were not exercised for this documentation update. |
 | Can I rely on fixes or support? | No ongoing maintenance is planned. Search [issues](https://github.com/connorkeetch/auction-watch/issues), then provide reproduction steps, your environment, and redacted diagnostics. Replies or PR review are not guaranteed. |
-| What license applies? | No root `LICENSE` file is included. This documentation update leaves licensing unchanged; ask the owner to clarify reuse terms. |
+| What license applies? | Project source code is available under the [MIT License](LICENSE). Third-party dependencies, assets, and services retain their own terms. |
 
 ## Code map
 
